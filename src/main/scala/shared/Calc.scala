@@ -18,7 +18,7 @@ object Calc {
     println(s"Amount of requests: ${timers.size}")
     println(s"Total time: ${totalTimeInMs}ms")
     println(s"Average: ${totalTimeInMs / timers.size}ms")
-    println(s"Throughput: ${(timers.size / totalTimeInMs) * 1000} requests/s")
+    println(s"Throughput: ${(timers.size / totalTimeInMs) * 1000 * 5} requests/s")
     println("-------------------------------------------------")
   }
 }
