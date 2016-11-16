@@ -135,3 +135,5 @@ tmp/
 # TeXlipse plugin
 .texlipse
 
+# Custom
+/target/
