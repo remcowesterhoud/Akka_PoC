@@ -19,7 +19,7 @@ object Main extends App {
   implicit val executionContext = ExecutionContext.fromExecutorService(executorService)
 
   // Amount of elements to be send through the stream
-  var requestAmount: Int = 1
+  var requestAmount: Int = 1000
   val timers = ArrayBuffer[Timer]()
 
   for (i <- 1 to requestAmount) {
