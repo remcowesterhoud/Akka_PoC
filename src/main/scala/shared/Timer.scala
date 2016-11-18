@@ -22,7 +22,8 @@ class Timer(i: Int) {
   }
 
   def performAction(): Timer = {
-    println(s"Performed Timer $i")
+    Thread.sleep(500)
+    println(s"Performed Timer $i on ${Thread.currentThread()}")
     this
   }
 }

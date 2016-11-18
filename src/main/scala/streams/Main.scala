@@ -7,7 +7,8 @@ import akka.stream.ActorMaterializer
 import shared.{Calc, Timer}
 
 import scala.collection.mutable.ArrayBuffer
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{Await, ExecutionContext}
+import scala.concurrent.duration._
 
 /**
   * Created by RemcoW on 9-11-2016.
@@ -19,7 +20,7 @@ object Main extends App {
   implicit val executionContext = ExecutionContext.fromExecutorService(executorService)
 
   // Amount of elements to be send through the stream
-  var requestAmount: Int = 1000
+  var requestAmount: Int = 50
   val timers = ArrayBuffer[Timer]()
 
   for (i <- 1 to requestAmount) {
@@ -30,8 +31,7 @@ object Main extends App {
   for (timer <- timers) {
     timer.startClock()
   }
-  graph.run()
-  Thread.sleep(1000)
+  println(Await.result(graph.run(), 10.seconds))
   Calc.calculateThroughput(timers)
   System.exit(0)
 }
