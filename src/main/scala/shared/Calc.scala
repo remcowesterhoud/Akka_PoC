@@ -3,8 +3,8 @@ package shared
 import scala.collection.mutable.ArrayBuffer
 
 /**
-  * Created by RemcoW on 16-11-2016.
-  */
+ * Created by RemcoW on 16-11-2016.
+ */
 object Calc {
   def calculateThroughput(timers: ArrayBuffer[Timer]) = {
     var totalTimeInMs = 0.00
@@ -13,8 +13,12 @@ object Calc {
     println()
     for (timer <- timers) {
       val took = (timer.endTime - timer.startTime) / 1000000.00
-      if (took < min) {min = took}
-      if (took > max) {max = took}
+      if (took < min) {
+        min = took
+      }
+      if (took > max) {
+        max = took
+      }
       println(s"Timer ${timer.getI} took ${took}ms")
       totalTimeInMs += took
     }

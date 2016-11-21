@@ -11,8 +11,8 @@ import scala.concurrent.{Await, ExecutionContext}
 import scala.concurrent.duration._
 
 /**
-  * Created by RemcoW on 9-11-2016.
-  */
+ * Created by RemcoW on 9-11-2016.
+ */
 object Main extends App {
   implicit val system = ActorSystem("Stream_PoC")
   implicit val materializer = ActorMaterializer()
@@ -20,7 +20,7 @@ object Main extends App {
   implicit val executionContext = ExecutionContext.fromExecutorService(executorService)
 
   // Amount of elements to be send through the stream
-  var requestAmount: Int = 50
+  var requestAmount: Int = 5
   val timers = ArrayBuffer[Timer]()
 
   for (i <- 1 to requestAmount) {
@@ -31,7 +31,7 @@ object Main extends App {
   for (timer <- timers) {
     timer.startClock()
   }
-  println(Await.result(graph.run(), 10.seconds))
+  Await.result(graph.run(), 10.seconds)
   Calc.calculateThroughput(timers)
   System.exit(0)
 }
