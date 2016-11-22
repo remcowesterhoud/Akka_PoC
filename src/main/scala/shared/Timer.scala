@@ -1,8 +1,8 @@
 package shared
 
 /**
- * Created by RemcoW on 9-11-2016.
- */
+  * Created by RemcoW on 9-11-2016.
+  */
 class Timer(i: Int) {
   var startTime: Long = 0L
   var endTime: Long = 0L

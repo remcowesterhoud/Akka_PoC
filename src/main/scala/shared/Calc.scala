@@ -3,8 +3,8 @@ package shared
 import scala.collection.mutable.ArrayBuffer
 
 /**
- * Created by RemcoW on 16-11-2016.
- */
+  * Created by RemcoW on 16-11-2016.
+  */
 object Calc {
   def calculateThroughput(timers: ArrayBuffer[Timer]) = {
     var totalTimeInMs = 0.00

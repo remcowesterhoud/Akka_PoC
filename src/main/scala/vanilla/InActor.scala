@@ -3,26 +3,32 @@ package vanilla
 import akka.actor.{Actor, Props}
 import shared.Timer
 
-import scala.collection.mutable.ArrayBuffer
-
 /**
- * Created by RemcoW on 16-11-2016.
- */
+  * Created by RemcoW on 16-11-2016.
+  */
 class InActor extends Actor {
 
   val a1, a2, a3, a4, a5 = context.actorOf(Props[ActionActor])
+  var next = a1
 
   override def receive = {
-    case x: ArrayBuffer[Timer] =>
-      for (i <- x.indices) {
-        val next = i % 5 match {
-          case 0 => a1
-          case 1 => a2
-          case 2 => a3
-          case 3 => a4
-          case 4 => a5
-        }
-        next ! x(i)
+    case x: Timer =>
+      next match {
+        case `a1` =>
+          next ! x
+          next = a2
+        case `a2` =>
+          next ! x
+          next = a3
+        case `a3` =>
+          next ! x
+          next = a4
+        case `a4` =>
+          next ! x
+          next = a5
+        case `a5` =>
+          next ! x
+          next = a1
       }
     case _ =>
       println("Something went wrong")

@@ -6,8 +6,8 @@ import shared.{Calc, Timer}
 import scala.collection.mutable.ArrayBuffer
 
 /**
- * Created by RemcoW on 16-11-2016.
- */
+  * Created by RemcoW on 16-11-2016.
+  */
 object Main extends App {
   val system = ActorSystem("Akka_PoC")
   val inRef = system.actorOf(Props[InActor], name = "in")
@@ -23,9 +23,9 @@ object Main extends App {
   }
   for (timer <- timers) {
     timer.startClock()
+    inRef ! timer
   }
-  inRef ! timers
-  Thread.sleep(100)
+  Thread.sleep(500)
   Calc.calculateThroughput(timers)
   System.exit(0)
 }
