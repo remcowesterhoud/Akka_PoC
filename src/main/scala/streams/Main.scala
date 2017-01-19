@@ -14,7 +14,9 @@ import scala.concurrent.duration._
  * Created by RemcoW on 9-11-2016.
  */
 object Main extends App {
+  // Underwater Actors will be created. Therefore an ActorSystem is needed.
   implicit val system = ActorSystem("Stream_PoC")
+  // The materializer converts the Stream components to Actors
   implicit val materializer = ActorMaterializer()
   val executorService = Executors.newCachedThreadPool()
   implicit val executionContext = ExecutionContext.fromExecutorService(executorService)
