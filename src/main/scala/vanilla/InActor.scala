@@ -10,9 +10,11 @@ import scala.collection.mutable.ArrayBuffer
  */
 class InActor extends Actor {
 
+  // The "in" actor creates 5 new ActionActors
   val a1, a2, a3, a4, a5 = context.actorOf(Props[ActionActor])
 
   override def receive = {
+    // When this actor receives a message containing an ArrayBuffer of Timers it will distribute the timers over the 5 ActionActors
     case x: ArrayBuffer[Timer] =>
       for (i <- x.indices) {
         val next = i % 5 match {
